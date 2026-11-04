@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Lista de Citas</h2>
+<a href="{{ url_for('citas.agregar') }}" class="btn btn-primary">Nueva Cita</a>
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Médico</th>
+    <th>Paciente</th>
+    <th>Acciones</th>
+  </tr>
+  {% for c in citas %}
+  <tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.fecha.strftime('%d/%m/%Y') }}</td>
+    <td>{{ c.hora.strftime('%H:%M') }}</td>
+    <td>{{ c.medico.nombre }}</td>
+    <td>{{ c.paciente.nombre }}</td>
+    <td>
+      <a href="{{ url_for('citas.editar', id=c.id) }}" class="btn btn-sm btn-warning">Editar</a>
+      <a href="{{ url_for('citas.eliminar', id=c.id) }}" class="btn btn-sm btn-danger">Eliminar</a>
+    </td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="6" class="text-center">No hay citas registradas</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

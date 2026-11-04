@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Lista de Pacientes</h2>
+<a href="{{ url_for('pacientes.agregar') }}" class="btn btn-primary">Nuevo Paciente</a>
+<table class="table table-striped">
+  <tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Acciones</th></tr>
+  {% for p in pacientes %}
+  <tr>
+    <td>{{ p.id }}</td>
+    <td>{{ p.nombre }}</td>
+    <td>{{ p.telefono }}</td>
+    <td>
+      <a href="{{ url_for('pacientes.editar', id=p.id) }}" class="btn btn-sm btn-warning">Editar</a>
+      <a href="{{ url_for('pacientes.eliminar', id=p.id) }}" class="btn btn-sm btn-danger">Eliminar</a>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4" class="text-center">No hay pacientes registrados</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

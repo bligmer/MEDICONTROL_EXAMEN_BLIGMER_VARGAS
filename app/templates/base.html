@@ -1,0 +1,24 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}MediControl - Gestión de Citas{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ url_for('index') }}">🏥 MediControl</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{{ url_for('medicos.listar') }}">Médicos</a></li>
+      <li><a href="{{ url_for('pacientes.listar') }}">Pacientes</a></li>
+      <li><a href="{{ url_for('citas.listar') }}">Citas</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% block contenido %}{% endblock %}
+</div>
+{% endblock %}
